@@ -27,6 +27,8 @@ public class PalindromeCheckerApp {
         uc8LinkedListCheck("noon");
 
         uc9RecursiveCheck("refer");
+
+        uc10NormalizedCheck("A man a plan a canal Panama");
     }
 
     // UC2 - Hardcoded String Check
@@ -255,5 +257,32 @@ public class PalindromeCheckerApp {
 
         // Recursive call
         return isPalindromeRecursive(input, start + 1, end - 1);
+    }
+    // UC10 - Case-Insensitive & Space-Ignored Palindrome Check
+    public static void uc10NormalizedCheck(String input) {
+        System.out.println("UC10 - Case Insensitive & Space Ignored Check");
+
+        // Step 1: Normalize string
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        // Step 2: Check palindrome using two-pointer
+        int start = 0;
+        int end = normalized.length() - 1;
+        boolean isPalindrome = true;
+
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
+        }
+
+        if (isPalindrome) {
+            System.out.println(input + " is a Palindrome\n");
+        } else {
+            System.out.println(input + " is NOT a Palindrome\n");
+        }
     }
 }
