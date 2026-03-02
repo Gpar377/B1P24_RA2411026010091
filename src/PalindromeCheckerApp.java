@@ -25,6 +25,8 @@ public class PalindromeCheckerApp {
         uc7DequeCheck("civic");
 
         uc8LinkedListCheck("noon");
+
+        uc9RecursiveCheck("refer");
     }
 
     // UC2 - Hardcoded String Check
@@ -226,5 +228,32 @@ public class PalindromeCheckerApp {
         } else {
             System.out.println(input + " is NOT a Palindrome\n");
         }
+    }
+    // UC9 - Recursive Palindrome Checker
+    public static void uc9RecursiveCheck(String input) {
+        System.out.println("UC9 - Recursive Palindrome Check");
+
+        boolean result = isPalindromeRecursive(input, 0, input.length() - 1);
+
+        if (result) {
+            System.out.println(input + " is a Palindrome\n");
+        } else {
+            System.out.println(input + " is NOT a Palindrome\n");
+        }
+    }
+
+    private static boolean isPalindromeRecursive(String input, int start, int end) {
+        // Base condition
+        if (start >= end) {
+            return true;
+        }
+
+        // If characters don't match
+        if (input.charAt(start) != input.charAt(end)) {
+            return false;
+        }
+
+        // Recursive call
+        return isPalindromeRecursive(input, start + 1, end - 1);
     }
 }
