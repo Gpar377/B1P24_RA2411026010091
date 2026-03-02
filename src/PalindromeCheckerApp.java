@@ -31,8 +31,11 @@ public class PalindromeCheckerApp {
         uc10NormalizedCheck("A man a plan a canal Panama");
 
         uc11OOPCheck("rotor");
+
         uc12StrategyCheck("level", new StackStrategy(), "Stack Strategy");
         uc12StrategyCheck("radar", new DequeStrategy(), "Deque Strategy");
+
+        uc13PerformanceCheck("racecar");
     }
 
     // UC2 - Hardcoded String Check
@@ -363,5 +366,34 @@ public class PalindromeCheckerApp {
             System.out.println(input + " is NOT a Palindrome\n");
         }
     }
+    // UC13 - Performance Comparison
+    public static void uc13PerformanceCheck(String input) {
+        System.out.println("UC13 - Performance Comparison");
 
+        long start, end;
+
+        // Stack Strategy
+        start = System.nanoTime();
+        Stack<Character> stack = new Stack<>();
+        for (char c : input.toCharArray()) stack.push(c);
+        for (char c : input.toCharArray()) stack.pop();
+        end = System.nanoTime();
+        System.out.println("Stack Strategy time: " + (end - start) + " ns");
+
+        // Deque Strategy
+        start = System.nanoTime();
+        Deque<Character> deque = new ArrayDeque<>();
+        for (char c : input.toCharArray()) deque.add(c);
+        while (deque.size() > 0) deque.removeFirst();
+        end = System.nanoTime();
+        System.out.println("Deque Strategy time: " + (end - start) + " ns");
+
+        // Char Array Two Pointer
+        start = System.nanoTime();
+        char[] arr = input.toCharArray();
+        int s = 0, e = arr.length - 1;
+        while (s < e) { if (arr[s++] != arr[e--]) break; }
+        end = System.nanoTime();
+        System.out.println("Char Array Two Pointer time: " + (end - start) + " ns\n");
+    }
 }
