@@ -1,3 +1,5 @@
+package BookMyStayApp;
+
 import java.util.*;
 
 /**
@@ -45,7 +47,7 @@ class AddOnService {
 
 class AddOnServiceManager {
 
-    // Map → Reservation ID → List of Services
+    // Map → BookMyStayApp.Reservation ID → List of Services
     private Map<String, List<AddOnService>> serviceMap = new HashMap<>();
 
     // Add service to reservation
@@ -56,13 +58,13 @@ class AddOnServiceManager {
                 .add(service);
 
         System.out.println("Added service: " + service.getServiceName()
-                + " to Reservation ID: " + reservationId);
+                + " to BookMyStayApp.Reservation ID: " + reservationId);
     }
 
     // Display services for a reservation
     public void displayServices(String reservationId) {
 
-        System.out.println("\n--- Services for Reservation: " + reservationId + " ---");
+        System.out.println("\n--- Services for BookMyStayApp.Reservation: " + reservationId + " ---");
 
         List<AddOnService> services = serviceMap.get(reservationId);
 

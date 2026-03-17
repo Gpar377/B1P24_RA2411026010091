@@ -1,3 +1,5 @@
+package PalindromeCheckerApp;
+
 import java.util.Stack;
 import java.util.Queue;
 import java.util.LinkedList;

@@ -1,3 +1,5 @@
+package BookMyStayApp;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -38,7 +40,7 @@ class Reservation {
     }
 
     public void display() {
-        System.out.println("Guest: " + guestName + " | Requested Room: " + roomType);
+        System.out.println("Guest: " + guestName + " | Requested BookMyStayApp.Room: " + roomType);
     }
 }
 
@@ -94,10 +96,10 @@ public class UseCase5BookingRequestQueue {
         BookingQueue bookingQueue = new BookingQueue();
 
         // Simulate incoming booking requests
-        bookingQueue.addRequest(new Reservation("Alice", "Single Room"));
-        bookingQueue.addRequest(new Reservation("Bob", "Double Room"));
-        bookingQueue.addRequest(new Reservation("Charlie", "Suite Room"));
-        bookingQueue.addRequest(new Reservation("David", "Single Room"));
+        bookingQueue.addRequest(new Reservation("Alice", "Single BookMyStayApp.Room"));
+        bookingQueue.addRequest(new Reservation("Bob", "Double BookMyStayApp.Room"));
+        bookingQueue.addRequest(new Reservation("Charlie", "Suite BookMyStayApp.Room"));
+        bookingQueue.addRequest(new Reservation("David", "Single BookMyStayApp.Room"));
 
         // Display queue (FIFO order preserved)
         bookingQueue.displayQueue();

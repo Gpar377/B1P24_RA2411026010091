@@ -1,3 +1,5 @@
+package BookMyStayApp;
+
 /**
  * Book My Stay Application
  *

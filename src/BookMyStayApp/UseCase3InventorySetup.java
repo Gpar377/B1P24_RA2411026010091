@@ -1,10 +1,12 @@
+package BookMyStayApp;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Book My Stay Application
  *
- * Use Case 3: Centralized Room Inventory Management
+ * Use Case 3: Centralized BookMyStayApp.Room Inventory Management
  *
  * This program demonstrates how HashMap is used to centralize
  * room availability, replacing scattered variables from previous use cases.
@@ -26,9 +28,9 @@ class RoomInventory {
         inventory = new HashMap<>();
 
         // Register room types with availability
-        inventory.put("Single Room", 5);
-        inventory.put("Double Room", 3);
-        inventory.put("Suite Room", 2);
+        inventory.put("Single BookMyStayApp.Room", 5);
+        inventory.put("Double BookMyStayApp.Room", 3);
+        inventory.put("Suite BookMyStayApp.Room", 2);
     }
 
     // Get availability
@@ -41,13 +43,13 @@ class RoomInventory {
         if (inventory.containsKey(roomType)) {
             inventory.put(roomType, count);
         } else {
-            System.out.println("Room type not found: " + roomType);
+            System.out.println("BookMyStayApp.Room type not found: " + roomType);
         }
     }
 
     // Display full inventory
     public void displayInventory() {
-        System.out.println("\n--- Current Room Inventory ---");
+        System.out.println("\n--- Current BookMyStayApp.Room Inventory ---");
         for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
             System.out.println(entry.getKey() + " → Available: " + entry.getValue());
         }
@@ -74,8 +76,8 @@ public class UseCase3InventorySetup {
         inventory.displayInventory();
 
         // Simulate update
-        System.out.println("\nUpdating availability for Single Room...\n");
-        inventory.updateAvailability("Single Room", 4);
+        System.out.println("\nUpdating availability for Single BookMyStayApp.Room...\n");
+        inventory.updateAvailability("Single BookMyStayApp.Room", 4);
 
         // Display updated inventory
         inventory.displayInventory();

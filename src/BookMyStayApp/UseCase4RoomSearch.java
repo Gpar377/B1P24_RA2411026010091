@@ -1,10 +1,12 @@
+package BookMyStayApp;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Book My Stay Application
  *
- * Use Case 4: Room Search & Availability Check
+ * Use Case 4: BookMyStayApp.Room Search & Availability Check
  *
  * This program demonstrates read-only access to inventory.
  * Guests can view available rooms without modifying system state.
@@ -19,7 +21,7 @@ import java.util.Map;
 
 // ===================== DOMAIN MODEL =====================
 
-// Abstract Room
+// Abstract BookMyStayApp.Room
 abstract class Room {
     private String roomType;
     private int beds;
@@ -42,11 +44,11 @@ abstract class Room {
 // Concrete Rooms
 class SingleRoom extends Room {
     public SingleRoom() {
-        super("Single Room", 1, 2000);
+        super("Single BookMyStayApp.Room", 1, 2000);
     }
 
     public void displayDetails() {
-        System.out.println("Room: " + getRoomType() +
+        System.out.println("BookMyStayApp.Room: " + getRoomType() +
                 " | Beds: " + getBeds() +
                 " | Price: ₹" + getPrice());
     }
@@ -54,11 +56,11 @@ class SingleRoom extends Room {
 
 class DoubleRoom extends Room {
     public DoubleRoom() {
-        super("Double Room", 2, 3500);
+        super("Double BookMyStayApp.Room", 2, 3500);
     }
 
     public void displayDetails() {
-        System.out.println("Room: " + getRoomType() +
+        System.out.println("BookMyStayApp.Room: " + getRoomType() +
                 " | Beds: " + getBeds() +
                 " | Price: ₹" + getPrice());
     }
@@ -66,11 +68,11 @@ class DoubleRoom extends Room {
 
 class SuiteRoom extends Room {
     public SuiteRoom() {
-        super("Suite Room", 3, 6000);
+        super("Suite BookMyStayApp.Room", 3, 6000);
     }
 
     public void displayDetails() {
-        System.out.println("Room: " + getRoomType() +
+        System.out.println("BookMyStayApp.Room: " + getRoomType() +
                 " | Beds: " + getBeds() +
                 " | Price: ₹" + getPrice());
     }
@@ -85,9 +87,9 @@ class RoomInventory {
 
     public RoomInventory() {
         inventory = new HashMap<>();
-        inventory.put("Single Room", 5);
-        inventory.put("Double Room", 0); // intentionally 0 to test filtering
-        inventory.put("Suite Room", 2);
+        inventory.put("Single BookMyStayApp.Room", 5);
+        inventory.put("Double BookMyStayApp.Room", 0); // intentionally 0 to test filtering
+        inventory.put("Suite BookMyStayApp.Room", 2);
     }
 
     // Read-only access

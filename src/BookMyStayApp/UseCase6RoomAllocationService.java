@@ -1,9 +1,11 @@
+package BookMyStayApp;
+
 import java.util.*;
 
 /**
  * Book My Stay Application
  *
- * Use Case 6: Reservation Confirmation & Room Allocation
+ * Use Case 6: BookMyStayApp.Reservation Confirmation & BookMyStayApp.Room Allocation
  *
  * This program processes booking requests from a queue,
  * assigns unique room IDs, prevents double-booking using Set,
@@ -39,9 +41,9 @@ class RoomInventory {
     private Map<String, Integer> inventory = new HashMap<>();
 
     public RoomInventory() {
-        inventory.put("Single Room", 2);
-        inventory.put("Double Room", 1);
-        inventory.put("Suite Room", 1);
+        inventory.put("Single BookMyStayApp.Room", 2);
+        inventory.put("Double BookMyStayApp.Room", 1);
+        inventory.put("Suite BookMyStayApp.Room", 1);
     }
 
     public int getAvailability(String roomType) {
@@ -86,7 +88,7 @@ class BookingService {
 
     private RoomInventory inventory;
 
-    // Map → Room Type → Set of Room IDs
+    // Map → BookMyStayApp.Room Type → Set of BookMyStayApp.Room IDs
     private Map<String, Set<String>> allocatedRooms = new HashMap<>();
 
     // Global Set → Prevent duplicates across system
@@ -129,11 +131,11 @@ class BookingService {
                     // Confirm booking
                     System.out.println("Booking Confirmed → Guest: "
                             + request.getGuestName()
-                            + " | Room Type: " + roomType
-                            + " | Room ID: " + roomId);
+                            + " | BookMyStayApp.Room Type: " + roomType
+                            + " | BookMyStayApp.Room ID: " + roomId);
 
                 } else {
-                    System.out.println("Duplicate Room ID detected! Skipping...");
+                    System.out.println("Duplicate BookMyStayApp.Room ID detected! Skipping...");
                 }
 
             } else {
@@ -143,7 +145,7 @@ class BookingService {
         }
     }
 
-    // Generate Room ID
+    // Generate BookMyStayApp.Room ID
     private String generateRoomId(String roomType) {
         return roomType.substring(0, 2).toUpperCase() + "-" + UUID.randomUUID().toString().substring(0, 4);
     }
@@ -167,10 +169,10 @@ public class UseCase6RoomAllocationService {
         BookingQueue queue = new BookingQueue();
 
         // Add booking requests
-        queue.addRequest(new Reservation("Alice", "Single Room"));
-        queue.addRequest(new Reservation("Bob", "Single Room"));
-        queue.addRequest(new Reservation("Charlie", "Single Room")); // should fail
-        queue.addRequest(new Reservation("David", "Suite Room"));
+        queue.addRequest(new Reservation("Alice", "Single BookMyStayApp.Room"));
+        queue.addRequest(new Reservation("Bob", "Single BookMyStayApp.Room"));
+        queue.addRequest(new Reservation("Charlie", "Single BookMyStayApp.Room")); // should fail
+        queue.addRequest(new Reservation("David", "Suite BookMyStayApp.Room"));
 
         // Process bookings
         BookingService service = new BookingService(inventory);

@@ -1,7 +1,9 @@
+package BookMyStayApp;
+
 /**
  * Book My Stay Application
  *
- * Use Case 2: Basic Room Types & Static Availability
+ * Use Case 2: Basic BookMyStayApp.Room Types & Static Availability
  *
  * This program demonstrates object-oriented design using abstraction,
  * inheritance, encapsulation, and polymorphism. It models different
@@ -50,12 +52,12 @@ abstract class Room {
 class SingleRoom extends Room {
 
     public SingleRoom() {
-        super("Single Room", 1, 2000.0);
+        super("Single BookMyStayApp.Room", 1, 2000.0);
     }
 
     @Override
     public void displayRoomDetails() {
-        System.out.println("Room Type: " + getRoomType());
+        System.out.println("BookMyStayApp.Room Type: " + getRoomType());
         System.out.println("Beds: " + getNumberOfBeds());
         System.out.println("Price per night: ₹" + getPricePerNight());
     }
@@ -66,12 +68,12 @@ class SingleRoom extends Room {
 class DoubleRoom extends Room {
 
     public DoubleRoom() {
-        super("Double Room", 2, 3500.0);
+        super("Double BookMyStayApp.Room", 2, 3500.0);
     }
 
     @Override
     public void displayRoomDetails() {
-        System.out.println("Room Type: " + getRoomType());
+        System.out.println("BookMyStayApp.Room Type: " + getRoomType());
         System.out.println("Beds: " + getNumberOfBeds());
         System.out.println("Price per night: ₹" + getPricePerNight());
     }
@@ -82,12 +84,12 @@ class DoubleRoom extends Room {
 class SuiteRoom extends Room {
 
     public SuiteRoom() {
-        super("Suite Room", 3, 6000.0);
+        super("Suite BookMyStayApp.Room", 3, 6000.0);
     }
 
     @Override
     public void displayRoomDetails() {
-        System.out.println("Room Type: " + getRoomType());
+        System.out.println("BookMyStayApp.Room Type: " + getRoomType());
         System.out.println("Beds: " + getNumberOfBeds());
         System.out.println("Price per night: ₹" + getPricePerNight());
     }
@@ -116,7 +118,7 @@ public class UseCase2RoomInitialization {
         int suiteRoomAvailable = 2;
 
         // Display details
-        System.out.println("\n--- Room Details & Availability ---\n");
+        System.out.println("\n--- BookMyStayApp.Room Details & Availability ---\n");
 
         singleRoom.displayRoomDetails();
         System.out.println("Available: " + singleRoomAvailable);
