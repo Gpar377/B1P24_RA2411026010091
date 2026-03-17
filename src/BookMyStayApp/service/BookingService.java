@@ -1,5 +1,6 @@
 package BookMyStayApp.service;
 
+import BookMyStayApp.exception.InvalidBookingException;
 import BookMyStayApp.domain.Reservation;
 
 import java.util.*;
@@ -19,19 +20,25 @@ public class BookingService {
 
             Reservation r = queue.getNext();
 
-            if (inventory.getAvailability(r.getRoomType()) > 0) {
+            try {
+                // VALIDATION STEP (NEW)
+                BookingValidator.validate(r, inventory);
 
                 String id = generateId(r.getRoomType());
 
-                if (!allocatedIds.contains(id)) {
-                    allocatedIds.add(id);
-                    inventory.reduceAvailability(r.getRoomType());
+                allocatedIds.add(id);
+                inventory.reduceAvailability(r.getRoomType());
 
-                    System.out.println("Confirmed: " + r.getGuestName()
-                            + " | ID: " + id);
-                }
-            } else {
-                System.out.println("Failed: " + r.getGuestName());
+                System.out.println("Booking Confirmed → "
+                        + r.getGuestName()
+                        + " | Room ID: " + id);
+
+            } catch (InvalidBookingException e) {
+
+                // Graceful failure
+                System.out.println("Booking Failed → "
+                        + r.getGuestName()
+                        + " | Reason: " + e.getMessage());
             }
         }
     }
@@ -40,4 +47,4 @@ public class BookingService {
         return type.substring(0, 2).toUpperCase() + "-" +
                 UUID.randomUUID().toString().substring(0, 4);
     }
-}
+}}
