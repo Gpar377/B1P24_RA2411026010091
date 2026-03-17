@@ -1,50 +1,29 @@
 package BookMyStayApp.service;
 
-import BookMyStayApp.exception.InvalidBookingException;
 import BookMyStayApp.domain.Reservation;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 public class BookingService {
-
-    private RoomInventory inventory;
-    private Set<String> allocatedIds = new HashSet<>();
+    private final RoomInventory inventory;
+    private final Set<String> allocatedRoomIds = new HashSet<>();
 
     public BookingService(RoomInventory inventory) {
         this.inventory = inventory;
     }
 
-    public void processBookings(BookingQueue queue) {
-
-        while (!queue.isEmpty()) {
-
-            Reservation r = queue.getNext();
-
-            try {
-                // VALIDATION STEP (NEW)
-                BookingValidator.validate(r, inventory);
-
-                String id = generateId(r.getRoomType());
-
-                allocatedIds.add(id);
-                inventory.reduceAvailability(r.getRoomType());
-
-                System.out.println("Booking Confirmed → "
-                        + r.getGuestName()
-                        + " | Room ID: " + id);
-
-            } catch (InvalidBookingException e) {
-
-                // Graceful failure
-                System.out.println("Booking Failed → "
-                        + r.getGuestName()
-                        + " | Reason: " + e.getMessage());
+    public void processBooking(Reservation reservation) {
+        synchronized (this) {
+            String roomType = reservation.getRoomType();
+            if (inventory.allocateRoom(roomType)) {
+                String roomId = roomType.substring(0, 2).toUpperCase() + "-" + UUID.randomUUID().toString().substring(0,4);
+                allocatedRoomIds.add(roomId);
+                System.out.println("Booking Confirmed → Guest: " + reservation.getGuestName() + " | Room: " + roomType + " | Room ID: " + roomId);
+            } else {
+                System.out.println("Booking Failed → No availability for " + roomType + " (Guest: " + reservation.getGuestName() + ")");
             }
         }
     }
-
-    private String generateId(String type) {
-        return type.substring(0, 2).toUpperCase() + "-" +
-                UUID.randomUUID().toString().substring(0, 4);
-    }
-}}
+}

@@ -1,27 +1,34 @@
 package BookMyStayApp.service;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RoomInventory {
-
-    private Map<String, Integer> inventory = new HashMap<>();
+    private final Map<String, Integer> inventory = new HashMap<>();
 
     public RoomInventory() {
-        inventory.put("Single Room", 5);
-        inventory.put("Double Room", 3);
-        inventory.put("Suite Room", 2);
+        inventory.put("Single Room", 2);
+        inventory.put("Double Room", 2);
+        inventory.put("Suite Room", 1);
     }
 
-    public int getAvailability(String roomType) {
+    // Thread-safe availability check
+    public synchronized int getAvailability(String roomType) {
         return inventory.getOrDefault(roomType, 0);
     }
 
-    public void reduceAvailability(String roomType) {
-        inventory.put(roomType, inventory.get(roomType) - 1);
+    // Thread-safe reduce inventory
+    public synchronized boolean allocateRoom(String roomType) {
+        int available = inventory.getOrDefault(roomType, 0);
+        if (available > 0) {
+            inventory.put(roomType, available - 1);
+            return true;
+        }
+        return false;
     }
 
-    public void displayInventory() {
-        inventory.forEach((k, v) ->
-                System.out.println(k + " → Available: " + v));
+    public synchronized void displayInventory() {
+        System.out.println("\n--- Inventory ---");
+        inventory.forEach((type, count) -> System.out.println(type + " → " + count));
     }
 }

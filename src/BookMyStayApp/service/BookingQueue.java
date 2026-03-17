@@ -1,22 +1,24 @@
 package BookMyStayApp.service;
 
 import BookMyStayApp.domain.Reservation;
-
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class BookingQueue {
+    private final Queue<Reservation> queue = new LinkedList<>();
 
-    private Queue<Reservation> queue = new LinkedList<>();
-
-    public void addRequest(Reservation r) {
-        queue.add(r);
+    // Thread-safe add
+    public synchronized void addRequest(Reservation reservation) {
+        queue.add(reservation);
+        System.out.println("Booking request added for " + reservation.getGuestName());
     }
 
-    public Reservation getNext() {
+    // Thread-safe retrieve
+    public synchronized Reservation getNextRequest() {
         return queue.poll();
     }
 
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         return queue.isEmpty();
     }
 }

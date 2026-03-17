@@ -2,17 +2,26 @@ package BookMyStayApp.service;
 
 import BookMyStayApp.domain.Reservation;
 
-import java.util.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class BookingHistory {
+public class BookingHistory implements Serializable {
+    private List<Reservation> reservations = new ArrayList<>();
 
-    private List<Reservation> list = new ArrayList<>();
+    public void addReservation(Reservation r) { reservations.add(r); }
 
-    public void add(Reservation r) {
-        list.add(r);
+    public Reservation findReservation(String guestName, String roomType) {
+        return reservations.stream()
+                .filter(r -> r.getGuestName().equals(guestName) &&
+                        r.getRoomType().equals(roomType) &&
+                        !r.isCancelled())
+                .findFirst().orElse(null);
     }
 
-    public List<Reservation> getAll() {
-        return list;
+    public void cancelReservation(Reservation r) {
+        if (r != null) r.cancel();
     }
+
+    public List<Reservation> getAllReservations() { return reservations; }
 }
