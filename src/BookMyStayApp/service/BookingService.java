@@ -26,4 +26,13 @@ public class BookingService {
             }
         }
     }
+    // UC10: Cancel Booking
+    public void cancelBooking(String guestName, String roomType, RoomInventory inventory) {
+        synchronized (this) {
+            // For simplicity, just increment inventory
+            int current = inventory.getAvailability(roomType);
+            inventory.incrementRoom(roomType); // implement incrementRoom method in RoomInventory
+            System.out.println("Booking cancelled for " + guestName + " | Room Type: " + roomType);
+        }
+    }
 }

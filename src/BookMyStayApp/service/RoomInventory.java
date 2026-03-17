@@ -31,4 +31,8 @@ public class RoomInventory {
         System.out.println("\n--- Inventory ---");
         inventory.forEach((type, count) -> System.out.println(type + " → " + count));
     }
+    public synchronized void incrementRoom(String roomType) {
+        int current = inventory.getOrDefault(roomType, 0);
+        inventory.put(roomType, current + 1);
+    }
 }
